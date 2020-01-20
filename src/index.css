@@ -1,0 +1,16 @@
+
+.app-wrapper {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.wrapperContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+
+.nav {
+    background-color:  #C3073F;
+    width: 20%;
+    height: 700px;
+    font-family: 'Alata', sans-serif;
+}
+
+.item {
+    margin-top: 75px;
+    text-align: center;
+}
+.item a {
+    color: white;
+    font-size: 30px;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+    transition-duration: .3s;
+}
+
+a:hover {
+    transition-duration: .3s;
+    color: #222;
+}

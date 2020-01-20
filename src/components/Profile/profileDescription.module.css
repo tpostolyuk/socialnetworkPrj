@@ -1,0 +1,26 @@
+.description {
+    font-family: 'Open Sans Condensed', sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 250px;
+}
+
+
+.description img {
+    width: 150px;
+}
+
+.descriptionLogo {
+    width: 35%;
+}
+
+.descriptionText {
+    margin-top: -25px;
+    width: 65%;
+}
+
+.descriptionText p {
+    font-size: 20px;
+    font-weight: bold;
+}

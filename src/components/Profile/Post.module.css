@@ -1,0 +1,15 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+.item span {
+    margin-left: 15px;
+}
+
+.item img {
+    width: 70px;
+    border-radius: 50%;
+}

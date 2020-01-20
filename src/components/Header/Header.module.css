@@ -1,0 +1,15 @@
+
+.header {
+    background-color: #950740;
+    font-family: sans-serif;
+    height: 120px;
+    margin-bottom: 30px;
+    align-content: center;
+    align-items: center;
+}
+
+.header h1 {
+  color: #1A1A1D;
+  text-align: center;
+  text-transform: uppercase;
+}

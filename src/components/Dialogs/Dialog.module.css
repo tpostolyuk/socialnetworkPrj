@@ -1,0 +1,21 @@
+.dialogWrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+    width: 80%;
+    height: 700px;
+    margin-left: 20px;
+}
+
+.dialogItems {
+    width: 20%;
+    height: 700px;
+}
+.dialogMessage {
+    width: 50%;
+    height: 700px;
+}
+
+.active {
+    color: gold;
+}
