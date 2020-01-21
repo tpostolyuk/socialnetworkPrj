@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Posts.module.css';
-import Post from './Post.js';
+import Post from './Post';
 
 const Posts = () => {
   let posts = [

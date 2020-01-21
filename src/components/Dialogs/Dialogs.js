@@ -28,8 +28,8 @@ const Dialogs = () => {
     {id: 3, msg: "All the best bro!"}
   ];
 
-let dialogsElements = DialogsData.map(d => <DialogItem name = {d.name} />);
-let msgElements = MsgData.map(m => <DialogMsg msg = {m.msg} />)
+let dialogsElements = DialogsData.map((d, i) => <DialogItem key = {i} name = {d.name} />);
+let msgElements = MsgData.map((m, i) => <DialogMsg msg = {m.msg} key = {i} />)
 
     return (
         <div className={classes.dialogWrapper}>

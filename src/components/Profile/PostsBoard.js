@@ -1,8 +1,6 @@
 import React from 'react';
-
 import classes from './Posts.module.css';
-import Posts from './Posts.js';
-// import Post from './Post.js';
+import Posts from './Posts';
 
 export default class PostBoard extends React.Component {
   constructor(props) {
@@ -14,6 +12,8 @@ export default class PostBoard extends React.Component {
     }
   }
 
+  // Sending a value to list state 
+
     sendPost() {
       let val = document.getElementById('inpt').value;
       if(val !== '') {
@@ -24,6 +24,8 @@ export default class PostBoard extends React.Component {
         alert('Enter a message');
       }
     }
+    
+// Rendering the Posts component, input and button
 
     render() {
         return (
