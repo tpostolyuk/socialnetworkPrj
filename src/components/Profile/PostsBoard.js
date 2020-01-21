@@ -23,7 +23,6 @@ export default class PostBoard extends React.Component {
       } else {
         alert('Enter a message');
       }
-      console.log(this.state.list);
     }
 
     render() {

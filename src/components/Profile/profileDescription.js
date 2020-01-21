@@ -5,7 +5,7 @@ const profileDescription = () => {
     return (
         <div className={classes.description}>
             <div className={classes.descriptionLogo}>
-                <img src="https://cdn2.iconfinder.com/data/icons/flatfaces-everyday-people-square/128/beard_male_man_face_avatar-512.png"/>
+                <img alt="lala" src="https://cdn2.iconfinder.com/data/icons/flatfaces-everyday-people-square/128/beard_male_man_face_avatar-512.png"/>
             </div>
             <div className={classes.descriptionText}>
                 <h1>Taras P.</h1>
