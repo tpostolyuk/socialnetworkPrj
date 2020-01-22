@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Profile.module.css';
-import Description from './profileDescription.js';
-import PostsBoard from './PostsBoard';
+import Description from './ProfileDescription/profileDescription';
+import PostsBoard from './MyPost/PostsBoard';
 
 
 const Profile = () => {
