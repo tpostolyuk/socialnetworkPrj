@@ -1,18 +1,9 @@
 import React from 'react';
 import classes from './Dialog.module.css';
 // import {BrowserRouter, Route} from 'react-router-dom';
+import DialogItem from './DialogItem/DialogItem';
+import DialogMsg from './DialogMsg/DialogMsg';
 
-const DialogItem = (props) => {
-  return (
-      <div className={classes.item}>{props.name}</div>
-  );
-}
-
-const DialogMsg = (props) => {
-    return (
-        <div className = {classes.message}>{props.msg}</div>
-    );
-}
 const Dialogs = () => {
   const DialogsData = [
     {id: 1, name: 'Vova'},
