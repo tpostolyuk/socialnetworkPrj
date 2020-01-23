@@ -4,7 +4,7 @@ import Posts from './Posts';
 
 export default class PostBoard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.sendPost = this.sendPost.bind(this);
 
     this.state = {
@@ -32,7 +32,7 @@ export default class PostBoard extends React.Component {
             <div>
                 <input id="inpt" className={classes.postsInput} type="text" title="your news..."/>
                 <div className = {classes.btn} onClick = {this.sendPost}>Send</div>
-                <Posts />
+                <Posts posts={this.props.posts} />
             </div>
             );
     }
