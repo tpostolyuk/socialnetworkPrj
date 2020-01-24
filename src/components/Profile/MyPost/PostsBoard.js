@@ -8,7 +8,11 @@ export default class PostBoard extends React.Component {
     this.sendPost = this.sendPost.bind(this);
 
     this.state = {
-      list : []
+      list : [
+      {id: 1, msg: "Hey!"},
+      {id: 2, msg: "How's it goin'?"},
+      {id: 3, msg: "All the best bro!"}
+      ]
     }
     this.myRef = React.createRef();
   }
