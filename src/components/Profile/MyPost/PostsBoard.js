@@ -10,12 +10,11 @@ export default class PostBoard extends React.Component {
     this.state = {
       list : []
     }
+    this.myRef = React.createRef();
   }
-
   // Sending a value to list state 
-
     sendPost() {
-      let val = document.getElementById('inpt').value;
+      let val = this.myRef.current.value;
       if(val !== '') {
       this.setState({
         list: [...this.state.list, {msg: val}]
@@ -24,13 +23,11 @@ export default class PostBoard extends React.Component {
         alert('Enter a message');
       }
     }
-    
 // Rendering the Posts component, input and button
-
     render() {
         return (
             <div>
-                <input id="inpt" className={classes.postsInput} type="text" title="your news..."/>
+                <input ref = {this.myRef} className={classes.postsInput} type="text" title="your news..."/>
                 <div className = {classes.btn} onClick = {this.sendPost}>Send</div>
                 <Posts posts={this.props.posts} />
             </div>
