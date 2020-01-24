@@ -19,6 +19,7 @@ export default class PostBoard extends React.Component {
       this.setState({
         list: [...this.state.list, {msg: val}]
       })
+
       } else {
         alert('Enter a message');
       }
@@ -29,7 +30,7 @@ export default class PostBoard extends React.Component {
             <div>
                 <input ref = {this.myRef} className={classes.postsInput} type="text" title="your news..."/>
                 <div className = {classes.btn} onClick = {this.sendPost}>Send</div>
-                <Posts posts={this.props.posts} />
+                <Posts listItem = {this.state.list} posts={this.props.posts} />
             </div>
             );
     }
