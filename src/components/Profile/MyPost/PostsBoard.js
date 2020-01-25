@@ -6,12 +6,10 @@ export default class PostBoard extends React.Component {
   constructor(props) {
     super(props);
     this.sendPost = this.sendPost.bind(this);
-
+    this.removePost = this.removePost.bind(this);
     this.state = {
       list : [
       {id: 1, msg: "Hey!"},
-      {id: 2, msg: "How's it goin'?"},
-      {id: 3, msg: "All the best bro!"}
       ]
     }
     this.myRef = React.createRef();
@@ -28,13 +26,17 @@ export default class PostBoard extends React.Component {
         alert('Enter a message');
       }
     }
+
+    removePost() {
+      
+    }
 // Rendering the Posts component, input and button
     render() {
         return (
             <div>
                 <input ref = {this.myRef} className={classes.postsInput} type="text" title="your news..."/>
                 <div className = {classes.btn} onClick = {this.sendPost}>Send</div>
-                <Posts listItem = {this.state.list} posts={this.props.posts} />
+                <Posts rmvPost = {this.removePost} listItem = {this.state.list} />
             </div>
             );
     }

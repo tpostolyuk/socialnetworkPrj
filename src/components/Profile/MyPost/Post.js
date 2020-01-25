@@ -6,6 +6,7 @@ const Post = (props) => {
         <div className={classes.item}>
             <img src="https://klike.net/uploads/posts/2019-03/1551511862_48.jpg" alt="ava" />
             <span>{props.message}</span>
+            <span onClick = {props.rmvPost}>&#10006;</span>
         </div>
     );
 }
