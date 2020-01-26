@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
 
 .posts {
-    width: 100%;
-    font-family: 'Abel', sans-serif;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  font-family: 'Abel', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .posts div span {
     font-size: 35px;
@@ -36,4 +37,5 @@ input {
     height: 100%;
     margin-top: 20px;
 }
+
   

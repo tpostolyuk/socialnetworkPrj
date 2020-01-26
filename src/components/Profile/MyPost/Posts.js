@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './Posts.module.css';
 import Post from './Post';
-import nanoid from 'nanoid';
 
- const Posts = (props) => {
+const Posts = (props) => {
    
- let postsElement = props.listItem.map((m, i) => <Post rmvPost = {props.rmvPost} message = {m.msg} key = {i} id = {nanoid(9)} />);
+let postsElement = props.listItem.map((item, idx) => <Post rmvPost={props.rmvPost} message={item.msg} key={idx} id={item.id} />);
 
   return (
     <div className={classes.posts}>
