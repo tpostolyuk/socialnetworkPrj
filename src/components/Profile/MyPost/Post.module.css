@@ -1,19 +1,28 @@
+
+.itemWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 700px;
+}
+
 .item {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-}
-.item span {
-    margin-left: 15px;
+  display: flex;
 }
 
-.item img {
-    width: 70px;
-    border-radius: 50%;
+.itemWrapper span {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.postMsgSpan {
+  display: block;
 }
 
-.cross {
-  float: right;
+.itemWrapper img {
+  width: 70px;
+  border-radius: 50%;
 }
+
+

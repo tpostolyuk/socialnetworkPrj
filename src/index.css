@@ -6,12 +6,10 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
-.wrapperContent {
+.contentWrapper {
   height: 2000px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 

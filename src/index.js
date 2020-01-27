@@ -5,9 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import state from './redux/state';
 
-// mdata - MessageData ddata - DialogData
-//  nanoid
-
 ReactDOM.render(<App state = {state} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

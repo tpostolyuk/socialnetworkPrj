@@ -1,21 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+
 .dialogWrapper {
-    display: flex;
-    flex-direction: row;
-    background-color: whitesmoke;
-    width: 80%;
-    height: 700px;
-    margin-left: 20px;
+  font-family: 'Bebas Neue', cursive;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 100%;
+  margin-left: 20px;
 }
 
-.dialogItems {
-    width: 20%;
-    height: 700px;
-}
-.dialogMessage {
-    width: 50%;
-    height: 700px;
+.item {
+  display: flex;
+
 }
 
-.active {
-    color: gold;
+.item > span {
+  color: black;
+  transition: .5s all ease-in-out;
+}
+.item > span:hover {
+  transition: .2s all ease;
+  border-bottom: 2px solid black;
+}
+
+.item > span {
+  align-self: center;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+
+
+
+.dialogNameItems {
+  align-self: center;
+  font-size: 25px;
+  text-align: center;
+  width: 20%;
+  height: 100%;
+  border-right: 2px solid #133;
+}
+
+.userLogo > img {
+  width: 60px;
+}
+
+
+.dialogMessageItems {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.message {
+  display: flex;
+}
+.friendMsg > span {
+  font-size: 30px;
+  padding-top: 2px;
+}
+
+.msgLogo > img {
+  width: 40px;
+}
+/* DIALOGS STYLE */
+
+.dialogsMyMsgItem {
+  font-size: 28px;
 }

@@ -1,19 +1,18 @@
 let state = {
- posts : [
-  {id: 1, message: 'Hey how are u?'},
-  {id: 2, message: "It's not my first post"},
-  {id: 3, message: "It's  my first post"},
-],
- ddata: [
-  {id: 1, name: 'Vova'},
-  {id: 2, name: 'Oleksandr'},
-  {id: 3, name: 'Dmitriy'},
-  {id: 4, name: 'Vasyl'},
-  {id: 5, name: 'Pavlo'}
-],
-  mdata: [
+  DialogsNameData: [
+    {id: 1, name: 'Vova'},
+    {id: 2, name: 'Oleksandr'},
+    {id: 3, name: 'Dmitriy'},
+    {id: 4, name: 'Vasyl'},
+    {id: 5, name: 'Pavlo'}
+  ],
+  DialogsMsgData: [
     {id: 1, msg: 'Hello!'},
     {id: 2, msg: 'How are u?'}
+  ],
+  DialogsMyMsgData: [
+    {id: 1, myMsg: "Heey!"},
+    {id: 2, myMsg: "I'm great u?"}
   ]
 }
 
