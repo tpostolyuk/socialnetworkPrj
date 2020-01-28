@@ -31,7 +31,6 @@ export default class PostBoard extends React.Component {
 
     removePost(id) {
       const arr = this.state.list.filter(el => el.id !== id);
-      console.log(arr, id);
       this.setState({
         list: arr
       })

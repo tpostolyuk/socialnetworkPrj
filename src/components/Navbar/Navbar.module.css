@@ -7,11 +7,11 @@
     font-family: 'Alata', sans-serif;
 }
 
-.item {
+.navItem {
     margin-top: 75px;
     text-align: center;
 }
-.item a {
+.navItem a {
     color: black;
     font-size: 30px;
 }

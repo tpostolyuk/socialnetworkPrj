@@ -11,16 +11,10 @@
 
 .item {
   display: flex;
-
 }
 
 .item > span {
   color: black;
-  transition: .5s all ease-in-out;
-}
-.item > span:hover {
-  transition: .2s all ease;
-  border-bottom: 2px solid black;
 }
 
 .item > span {
@@ -29,10 +23,7 @@
   margin-left: 15px;
 }
 
-
-
 .dialogNameItems {
-  align-self: center;
   font-size: 25px;
   text-align: center;
   width: 20%;
@@ -68,4 +59,9 @@
 
 .dialogsMyMsgItem {
   font-size: 28px;
+}
+.active {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: black;
 }

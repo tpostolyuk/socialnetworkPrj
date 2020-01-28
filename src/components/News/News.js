@@ -18,7 +18,7 @@ class News extends React.Component {
 render() {
   return (
     <div className = {classes.newsWrapper}>
-      {/* <NewsChild greet={this.sayHi} /> */}
+      <NewsChild greet={this.sayHi} />
       {this.state.isLogged ? <div>Welcome back Taras!</div> : <div>Welcome guest!</div>}
     </div>
     );
