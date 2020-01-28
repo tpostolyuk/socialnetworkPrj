@@ -1,11 +1,24 @@
 
 .header {
-    background-color: #950740;
-    font-family: sans-serif;
-    height: 120px;
-    margin-bottom: 30px;
-    align-content: center;
-    align-items: center;
+  background-color: whitesmoke;
+  font-family: sans-serif;
+  height: 120px;
+  margin-bottom: 30px;
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.headerLogo {
+  width: 30%;
+  align-content: flex-start;
+}
+.headerLogo > img {
+  width: 140px;
+}
+
+.headerText {
+  width: 70%;
 }
 
 .header h1 {

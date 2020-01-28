@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './News.module.css'
+import NewsChild from './NewsChild';
 
 
 class News extends React.Component {
@@ -7,7 +8,8 @@ class News extends React.Component {
     super(props)
     this.sayHi = this.sayHi.bind(this);
     this.state = {
-      message: 'Hello!'   
+      message: 'Hello!',
+      isLogged: true
     }
   }  
   sayHi() {
@@ -16,8 +18,8 @@ class News extends React.Component {
 render() {
   return (
     <div className = {classes.newsWrapper}>
-      {this.state.message}
-      <button onClick={this.sayHi}>Click</button>
+      {/* <NewsChild greet={this.sayHi} /> */}
+      {this.state.isLogged ? <div>Welcome back Taras!</div> : <div>Welcome guest!</div>}
     </div>
     );
   }

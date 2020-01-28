@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 
 .nav {
-    background-color:  #C3073F;
+    background-color:  whitesmoke;
     width: 20%;
     height: 100%;
     font-family: 'Alata', sans-serif;
@@ -12,17 +12,17 @@
     text-align: center;
 }
 .item a {
-    color: white;
+    color: black;
     font-size: 30px;
 }
 
 a {
-    color: white;
+    color: black;
     text-decoration-line: none;
     transition-duration: .3s;
 }
 
 a:hover {
     transition-duration: .3s;
-    color: #222;
+    color: orange;
 }
