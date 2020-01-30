@@ -1,25 +1,25 @@
 import React from 'react';
 import classes from './News.module.css'
-import NewsChild from './NewsChild';
 
 
 class News extends React.Component {
   constructor(props) {
     super(props)
-    this.sayHi = this.sayHi.bind(this);
+    this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.state = {
-      message: 'Hello!',
-      isLogged: true
+     email: '' 
     }
-  }  
-  sayHi() {
-    console.log('Hi ', this.state.message);
+  }
+  changeEmailHandler(event) {
+    this.setState({
+      email: event.target.value
+    })
   }
 render() {
   return (
-    <div className = {classes.newsWrapper}>
-      <NewsChild greet={this.sayHi} />
-      {this.state.isLogged ? <div>Welcome back Taras!</div> : <div>Welcome guest!</div>}
+    <div className={classes.newsWrapper}>
+      <input onChange={this.changeEmailHandler} />
+      <h1>{this.state.email}</h1>
     </div>
     );
   }

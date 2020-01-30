@@ -8,8 +8,8 @@ const Dialogs = (props) => {
 
 let dialogsNameItem = props.DialogsNameData.map((d, i) => {
   return (
-  <NavLink activeClassName={classes.active} to={`/dialogs/${d.name}`}>
-    <DialogNames name={d.name} key={i} />
+  <NavLink key={i} activeClassName={classes.active} to={`/dialogs/${d.name}`}>
+    <DialogNames name={d.name}  />
   </NavLink>
   )
 });
