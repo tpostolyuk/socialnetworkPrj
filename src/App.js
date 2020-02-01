@@ -16,7 +16,12 @@ const App = (props) => {
         <Header />
         <div className="contentWrapper">
         <Navbar />
-        <Route path='/dialogs' render={() => <Dialogs DialogsNameData={props.state.DialogsNameData} DialogsMsgData={props.state.DialogsMsgData} DialogsMyMsgData={props.state.DialogsMyMsgData} />} />
+        <Route path='/dialogs'
+        render={() => <Dialogs
+         DialogsNameData={props.store.getState().DialogsNameData}
+         DialogsMsgData={props.store.getState().DialogsMsgData}
+         DialogsMyMsgData={props.store.getState().DialogsMyMsgData} />}/>
+         
         <Route path='/profile' render={() => <Profile />} />
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
