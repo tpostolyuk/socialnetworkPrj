@@ -25,4 +25,14 @@
   border-radius: 50%;
 }
 
+.item > textarea {
+  width: 300px;
+  height: 40px;
+  font-size: 25px;
+  text-align: center;
+  background-color: #dcdcdc;
+  border: 2px solid #181818;
+  outline: none;
+  resize: none;
+}
 
