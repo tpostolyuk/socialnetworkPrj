@@ -1,4 +1,3 @@
-
 let store = {
   _state : {
     DialogsNameData: [
@@ -17,9 +16,18 @@ let store = {
       {id: 1, myMsg: "Como estas?"},
       {id: 2, myMsg: "Bien, gracias"}
     ]
-  },
+  },  
   getState() {
-    return this._state  }
+    return this._state  
+  },
+  // dispatch(action) {
+  //   switch(action.type) {
+  //     case 'CONSOLE_LOG' : console.log('HELLO! FROM ', action.payload);
+  //       break;
+        
+  //     default: return null;
+  //   }
+  // }
 
 };
 window.store = store;

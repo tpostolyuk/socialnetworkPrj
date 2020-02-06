@@ -15,7 +15,6 @@ export default class PostBoard extends React.Component {
     }
   }
 // Sending a value to list state 
-
   sendPost = () => {
     const { currentVal } = this.state;
 
@@ -64,8 +63,8 @@ export default class PostBoard extends React.Component {
     render() {
       return (
         <div>
-          <input
-            className={classes.postsInput}
+          <textarea
+            className={classes.postsTextArea}
             value={this.state.currentVal}
             onChange={(el) => this.setState({ currentVal: el.target.value })}
             type="text"
