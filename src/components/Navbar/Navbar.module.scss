@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
 
 .nav {
-    background-color:  whitesmoke;
-    width: 20%;
-    height: 100%;
-    font-family: 'Alata', sans-serif;
+  background-color:  whitesmoke;
+  width: 20%;
+  font-family: 'Alata', sans-serif;
+
+  &Item {
+    margin-top: 75px;
+    text-align: center;  
+  }
 }
 
-.navItem {
-    margin-top: 75px;
-    text-align: center;
-}
 .navItem a {
     color: black;
     font-size: 30px;

@@ -1,0 +1,14 @@
+/* .authContainer {
+  display: flex;
+  /* align-items: center; */
+
+
+.signUpForm {
+  display: flex;
+  width: 500px;
+  margin: 0 auto;
+  flex-direction: column;
+  & > .formItem:not(:last-child){
+    margin-bottom: 15px;
+  }
+}
