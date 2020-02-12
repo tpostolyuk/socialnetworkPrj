@@ -1,6 +1,6 @@
 import classes from './Post.module.css';
-import React from 'react'
-
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
 export default class Post extends React.Component {
   constructor(props) {
     super(props)
@@ -15,6 +15,7 @@ export default class Post extends React.Component {
     })
   }
   onKeyDownHandler = (event) => {
+    console.log(event);
     return event.keyCode === 13 ? this.props.onConfirmEditing({ id: this.props.id, msg: this.state.textAreaValue }) : '';
   }
 
@@ -36,7 +37,13 @@ export default class Post extends React.Component {
     return (
       <React.Fragment>
         <div className={classes.item}>
-          <textarea onKeyDown={this.onKeyDownHandler} onChange={this.handleChange} value={this.state.textAreaValue}></textarea>
+          <TextField  
+            onKeyDown={() => this.onKeyDownHandler}
+            onChange={this.handleChange} 
+            value={this.state.textAreaValue}
+            type="text"
+            label="Tell your news"
+            ></TextField>
         </div>
         <div className={classes.crossContainer}>
           <span onClick={() => this.props.rmvPost(this.props.id)}>&#10006;</span>

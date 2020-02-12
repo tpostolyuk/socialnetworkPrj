@@ -15,10 +15,6 @@
     width: 75%;
     height: 50px;
     margin-top: 20px;
-    background-color: rgb(214, 214, 214);
-    border: 2px solid #181818;
-    outline: none;
-    resize: none;
     font-size: 25px;
     line-height: 50px;
 }

@@ -11,7 +11,8 @@ export default class Auth extends Component {
     this.state = {
        email: '',
        password: '',
-       nickname: ''
+       nickname: '',
+       msgs: []
     }
   }
 

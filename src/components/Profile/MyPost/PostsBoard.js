@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './Posts.module.css';
 import Posts from './Posts';
 import nanoid from 'nanoid';
+import TextField from '@material-ui/core/TextField';
+import * as firebase from 'firebase';
 
 export default class PostBoard extends React.Component {
   constructor(props) {
@@ -19,6 +21,9 @@ export default class PostBoard extends React.Component {
     const { currentVal } = this.state;
 
     if(currentVal !== '') {
+      firebase.firestore().collection('projects').set({
+        
+      })
       this.setState({
         list: [...this.state.list, {id: nanoid(5), msg: currentVal, isEditing: false}]
       });
@@ -63,12 +68,12 @@ export default class PostBoard extends React.Component {
     render() {
       return (
         <div>
-          <textarea
+          <TextField
             className={classes.postsTextArea}
             value={this.state.currentVal}
             onChange={(el) => this.setState({ currentVal: el.target.value })}
             type="text"
-            title="your news..."
+            label="Tell your news"
           />
           <div className={classes.btn} onClick={this.sendPost}>Send</div>
           <Posts onChange={(id) => this.setState(state => {

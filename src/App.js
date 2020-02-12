@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import './index.css';
 import { Settings, News, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
 import {BrowserRouter, Route } from 'react-router-dom';
-import * as firebase from 'firebase';
-import firebaseConfig from './config';
+import firebase from './config';
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-    firebase.initializeApp(firebaseConfig);
     this.onAuthSignOut = this.onAuthSignOut.bind(this);
     this.onAuthSignIn = this.onAuthSignIn.bind(this);
     this.state = {
@@ -23,15 +21,6 @@ export default class App extends Component {
   }
   onAuthSignIn() {
     this.setState({isAuth: false});
-  }
-
-  componentDidMount() {
-    // firebase.firestore().collection('dialogs').get().then(snapshot => setupData(snapshot.docs));
-    // const setupData = data => {
-    //   data.forEach(doc => {
-    //     console.log(doc.data());
-    //   })
-    // }
   }
 
   render() {
@@ -50,12 +39,9 @@ export default class App extends Component {
       <Navbar />
       <Route 
         path='/dialogs'
-        render={() => <Dialogs
-        DialogsNameData={this.props.store.getState().DialogsNameData}
-        DialogsMsgData={this.props.store.getState().DialogsMsgData}
-        DialogsMyMsgData={this.props.store.getState().DialogsMyMsgData} />}/>
-      <Route path='/profile' render={() => <Profile dispatch={this.props.dispatch} />} />
-      <Route path='/news' render={() => <News renderr={this.onRenderData} />} />
+        component={Dialogs}/>
+      <Route path='/profile' render={() => <Profile />} />
+      <Route path='/news' render={() => <News />} />
       <Route path='/music' component={Music} />
       <Route path='/settings' component={Settings} />
       </div>

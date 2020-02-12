@@ -3,35 +3,37 @@ import classes from './Dialog.module.css';
 import DialogNames from './DialogNames/DialogNames';
 import DialogMessages from './DialogMessages/DialogMessages';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Dialogs = (props) => {
+const Dialogs = props => {
 
-let dialogsNameItem = props.DialogsNameData.map((d, i) => {
-  return (
-  <NavLink key={i} activeClassName={classes.active} to={`/dialogs/${d.name}`}>
-    <DialogNames name={d.name}  />
-  </NavLink>
-  )
-});
-
-let dialogsMsgItem = props.DialogsMsgData.map((m, i) => <DialogMessages msg={m.msg} key={i} />);
-let dialogsMyMsgItem = props.DialogsMyMsgData.map((m, i) => <DialogMessages myMsg={m.myMsg} key={i} />)
+  const { messages, names } = props; 
 
   return (
     <div className={classes.dialogWrapper}>
       <div className={classes.dialogNameItems}>
-        {dialogsNameItem}
+       { names && names.map(item => {
+         return (
+          <NavLink key={item.id} activeClassName={classes.active} to={`/dialogs/${item.id}`}>
+            <DialogNames name={item.name} />
+          </NavLink>
+         );
+       }) }
       </div>
       <div className={classes.dialogMessageItems}>
         <div className={classes.dialogsMsgItem}>
-          {dialogsMsgItem}
-        </div>
-        <div className={classes.dialogsMyMsgItem}>
-          {dialogsMyMsgItem}
+          { messages && messages.map(item => <DialogMessages msg={item.message} key={item.id} />) }
         </div>
       </div>
     </div>
     );
 }
 
-export default Dialogs;
+const mapStateToProps = state => {
+  return {
+    messages: state.message.messages,
+    names: state.name.names
+  }
+}
+
+export default connect(mapStateToProps)(Dialogs);
