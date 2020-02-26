@@ -1,12 +1,19 @@
+import { GET_MESSAGES } from '../constants/types';
+
 const initState = {
-  messages: [
-      {id: 1, message: "Hello!"},
-      {id: 2, message: "How's it goin?"}
-  ]
+  messages: []
 };
 
 const messageReducer = (state = initState, action) => {
-  return state;
+  switch(action.type) {
+    case GET_MESSAGES: 
+      return {
+        ...state,
+        messages: action.payload
+      }
+    default: return state;
+  }
+  
 }
 
 export default messageReducer;

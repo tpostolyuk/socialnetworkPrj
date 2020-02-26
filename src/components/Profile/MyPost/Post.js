@@ -1,7 +1,8 @@
 import classes from './Post.module.css';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-export default class Post extends React.Component {
+
+class Post extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -14,10 +15,6 @@ export default class Post extends React.Component {
       textAreaValue: e.target.value
     })
   }
-  onKeyDownHandler = (event) => {
-    console.log(event);
-    return event.keyCode === 13 ? this.props.onConfirmEditing({ id: this.props.id, msg: this.state.textAreaValue }) : '';
-  }
 
   renderDefault = () => {
     return (
@@ -27,12 +24,13 @@ export default class Post extends React.Component {
         <span className={classes.postMsgSpan}>{this.props.message}</span>
       </div>
       <div className={classes.crossContainer}>
-        <span onClick={() => this.props.rmvPost(this.props.id)}>&#10006;</span>
-        <span onClick={() => this.props.onEdit(this.props.id)}>EDIT</span>
+        <span onClick={() => this.props.onRemovePost(this.props.id)}>&#10006;</span>
+        <span onClick={() => this.props.onEditPost(this.props.id)}>EDIT</span>
       </div>
       </React.Fragment>
     );
   }
+
   renderIfIsEditable = () => {
     return (
       <React.Fragment>
@@ -46,11 +44,10 @@ export default class Post extends React.Component {
             ></TextField>
         </div>
         <div className={classes.crossContainer}>
-          <span onClick={() => this.props.rmvPost(this.props.id)}>&#10006;</span>
-          <span onClick={() => this.props.onConfirmEditing({ id: this.props.id, msg: this.state.textAreaValue })}>&#10003;</span>
+          <span onClick={() => this.props.onRemovePost(this.props.id)}>&#10006;</span>
+          <span onClick={() => this.props.onFinishEditingPost({id: this.props.id, val: this.state.textAreaValue})}>&#10003;</span>
         </div>
-      </React.Fragment>
-      
+      </React.Fragment> 
     )
   }
   
@@ -72,9 +69,4 @@ export default class Post extends React.Component {
   }
 }
 
-
-
-
-
-
-
+export default Post;

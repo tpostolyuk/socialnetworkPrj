@@ -1,0 +1,14 @@
+.musicWrapper {
+  display: flex;
+  background-color: whitesmoke;
+  width: 80%;
+  height: 700px;
+  margin-left: 20px;
+}
+
+.itemContainer {
+  height: 600px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}

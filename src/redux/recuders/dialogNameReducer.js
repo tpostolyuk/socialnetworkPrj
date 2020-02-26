@@ -1,14 +1,19 @@
+import { GET_NAMES } from '../constants/types';
+
 const initState = {
-  names: [
-    {id: 1, name: 'Vova'},
-    {id: 3, name: 'Dmitriy'},
-    {id: 4, name: 'Sofiia'},
-    {id: 5, name: 'Pavlo'}
-  ]
+  names: []
 }
 
 const dialogNameReducer = (state = initState, action) => {
-  return state;
+  const { payload } = action;
+  switch(action.type) {
+  case GET_NAMES:
+    return {
+      ...state,
+      names: payload
+    }
+  default: return state;
+  }
 }
 
 export default dialogNameReducer;

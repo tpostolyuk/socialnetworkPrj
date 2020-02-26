@@ -1,66 +1,70 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
 import classes from './News.module.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Card from './Card';
-import { buyCake, buyIceCream } from '../../redux/actions';
-import { useSelector, useDispatch } from 'react-redux';
-
-function Hooks() {
-  const numOfCakes = useSelector(state => state.cake.numOfCakes);
-  const numOfIceCream = useSelector(state => state.iceCream.numOfIceCream);
-  const dispatch = useDispatch();
-  return (
-    <div>
-      <h1>Number of Cakes - { numOfCakes } </h1>
-      <h1>Number of IceCream - { numOfIceCream }</h1>
-      <Button onClick={() => dispatch(buyCake())} variant="contained" color="primary">Buy Cake</Button>
-      <Button onClick={() => dispatch(buyIceCream())} variant="contained" color="secondary">Buy IceCream</Button>
-    </div>
-  )
-}
+import { addCard } from '../../redux/actions';
+import Card from '../News/Card';
+import { db } from '../../config';
 
 class News extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
       title: '',
-      content: ''   
+      content: '',
+      dbData: {}
     }
   }
-
+  getData = () => {
+    const docRef = db.collection("posts").doc("post");
+    docRef.get()
+      .then(doc => doc.exists ? console.log('Data: ', doc.data()) : console.log('No such doc'))
+      .catch(error => console.log("Error getting document:", error))
+  
+  }
+  
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.props)
-    
+    db.collection("posts").doc("post").set({
+      title: this.state.title,
+      content: this.state.content
+    })
+      .then(() => console.log("Document successfully written!"))
+      .catch(error => console.error("Error writing document: ", error));
+    this.getData();
   }
-
+  
 render() {
+  const { title, content } = this.state;
+  const { cards } = this.props;
+  const card = cards.map(i => <Card key={i} textTitle={title} textContent={content} />)
   return (
     <div className={classes.newsWrapper}>
       <div className={classes.blockWrapper}>
-      <form onSubmit={this.handleSubmit}>
-        <TextField 
-          id="outlined-basic"
-          label="Title" 
-          variant="outlined"
-          onChange={e => this.setState({title: e.target.value})} />
-        <TextField 
-          id="outlined-basic" 
-          label="Content" 
-          variant="outlined"
-          onChange={e => this.setState({content: e.target.value})} />
-        <Button 
-          type="submit"
-          variant="contained" 
-          color="secondary">
-          Add an Item
-        </Button>
-      </form> 
-      <Card />
-      <Hooks />
+         <form onSubmit={this.handleSubmit}>
+          <TextField 
+            id="outlined-basic"
+            label="Title" 
+            variant="outlined"
+            onChange={e => this.setState({title: e.target.value})} />
+          <TextField 
+            id="outlined-basic" 
+            label="Content" 
+            variant="outlined"
+            onChange={e => this.setState({content: e.target.value})} />
+          <Button 
+            type="submit"
+            variant="contained" 
+            color="secondary"
+            onClick={() => this.props.addCard({ title, content })}>
+            Add Card
+          </Button>
+        </form> 
+      </div>
+      <div>
+        {card}
       </div>
     </div>
     );
@@ -69,13 +73,11 @@ render() {
 
 const mapStateToProps = state => {
   return {
-    numOfCakes: state.cake.numOfCakes
+    cards: state.card.cardList
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    buyCake: () => dispatch(buyCake())
-  }
+const mapDispatchToProps = {
+  addCard
 }
 
 export default connect(

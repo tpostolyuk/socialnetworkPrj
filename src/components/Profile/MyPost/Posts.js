@@ -1,21 +1,22 @@
 import React from 'react';
 import classes from './Posts.module.css';
 import Post from './Post';
+import { connect } from 'react-redux';
 
-const Posts = (props) => {
-   
-const postsElement = props.listItem.map((item, idx) => {
+const Posts = props => {
+const postElement = props.posts.map(item => {
   return (
- <Post 
-    isEditing={item.isEditing}
-    onEdit={props.onEdit}
-    rmvPost={props.rmvPost} 
-    onConfirmEditing={props.onConfirmEditing} 
-    message={item.msg} 
-    key={idx}
-    id={item.id}
-  />
-  )});
+    <Post
+      isEditing={item.isEditing}
+      onEditPost={props.onEditPost}
+      onFinishEditingPost={props.onFinishEditingPost}
+      onRemovePost={props.onRemovePost}
+      message={item.msg} 
+      key={item.id}
+      id={item.id}
+    />
+  );
+})
 
   return (
     <div className={classes.posts}>
@@ -23,11 +24,16 @@ const postsElement = props.listItem.map((item, idx) => {
         <span>My posts</span>
       </div>
       <div className={classes.postWrapper}>
-        {postsElement}
+        {postElement}
       </div>
     </div>
      );
 
  }
+const mapStateToProps = state => {
+  return {
+    posts: state.post.postList
+  }
+} 
 
-export default Posts;
+export default connect(mapStateToProps)(Posts);

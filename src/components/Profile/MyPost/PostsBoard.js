@@ -1,96 +1,101 @@
 import React from 'react';
+import { connect } from 'react-redux'; 
 import classes from './Posts.module.css';
 import Posts from './Posts';
 import nanoid from 'nanoid';
 import TextField from '@material-ui/core/TextField';
-import * as firebase from 'firebase';
+import Button from '@material-ui/core/Button';
+import { addPost, getPosts, editPost, finishEditingPost, removePost, rollBackPosts } from '../../../redux/actions/postAction';
+import { dbRef } from '../../../config';
 
-export default class PostBoard extends React.Component {
+class PostsBoard extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
       currentVal: '',
-      list: [
-      {id: nanoid(5), msg: "Hey!", isEditing: false}
-      ]
     }
   }
-// Sending a value to list state 
-  sendPost = () => {
+// Sending a value 
+  sendPost = e => {
     const { currentVal } = this.state;
-
     if(currentVal !== '') {
-      firebase.firestore().collection('projects').set({
-        
+     dbRef.add({
+        msg: currentVal,
+        id: nanoid(5),
       })
-      this.setState({
-        list: [...this.state.list, {id: nanoid(5), msg: currentVal, isEditing: false}]
-      });
       this.setState({ currentVal: '' })
     } else {
       alert('Enter a message');
       }
     }
-
-  confirmEdit = (val) => {
-    this.setState({
-      list: [{isEditing: true}]
-    })
-
-    if(val !== '') {
-      this.setState({
-        list: [{msg: val, isEditing: false}]
-      })  
-    } else {
-      alert('Enter edited message!');
-    }
-    
+// Editing post
+  handleFinishEditingPost = ({id, val}) => {
+    this.props.finishEditingPost({id, val})
+    dbRef.doc(id).set({ msg: val })
+      .catch(() => this.props.rollBackPosts());
+  }
+  
+// Removing post
+  handleRemovingPost = id => {
+    this.props.removePost(id);
+    dbRef.doc(id).delete()
+      .catch(() => this.props.rollBackPosts())
   }
 
-  removePost = (id) => {
-    const arr = this.state.list.filter(el => el.id !== id);
-    this.setState({
-      list: arr
+  componentDidMount() {
+    dbRef.get()
+      .then(snap => {
+        const result = [];
+        snap.forEach(doc => result.push({...doc.data(), id: doc.id}));
+        this.props.getPosts(result)
     })
   }
-
-  handleEditingConfirmation = ({ id, msg }) => {
-    this.setState(prevState => {
-      return {
-        list: prevState.list.map(item => item.id === id ? ({ ...item, msg, isEditing: false }) : item)
-      };
-    })
-  }
-
-
+  
 // Rendering the Posts component, input and button
     render() {
+      const { currentVal } = this.state;
+      const { posts } = this.props;
       return (
         <div>
           <TextField
             className={classes.postsTextArea}
-            value={this.state.currentVal}
+            value={currentVal}
             onChange={(el) => this.setState({ currentVal: el.target.value })}
             type="text"
             label="Tell your news"
           />
-          <div className={classes.btn} onClick={this.sendPost}>Send</div>
-          <Posts onChange={(id) => this.setState(state => {
-              return {
-                list: [state.list.some(item => item.id === id)]
-              };
-            })}
-            rmvPost={this.removePost}
-            listItem={this.state.list}
-            onEdit={(id) => this.setState(prevState => {
-              return {
-                list: prevState.list.map(item => id === item.id ? { ...item, isEditing: true } : item)
-              };
-            })}
-            onConfirmEditing={this.handleEditingConfirmation}
+          <Button
+            variant="contained" 
+            color="primary"
+            onClick={() => {
+              this.sendPost()
+              this.props.addPost(currentVal)
+              }}>
+            Send
+          </Button>
+          <Posts 
+            onRemovePost={this.handleRemovingPost}
+            onEditPost={this.props.editPost}
+            onFinishEditingPost={this.handleFinishEditingPost}
+            posts={posts}
           />
         </div>
       );
     }
 }
+
+const mapStateToProps = state => {
+  return {
+    posts: state.post.postList
+  }
+}
+
+const mapDispatchToProps = {
+  addPost, getPosts, editPost, finishEditingPost, removePost, rollBackPosts
+};
+
+export default connect (
+  mapStateToProps, 
+  mapDispatchToProps)
+  (PostsBoard);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import * as firebase from 'firebase';
+import { auth, db } from '../../config'; 
 import classes from './Auth.module.scss';
 
 export default class Auth extends Component {
@@ -18,16 +18,16 @@ export default class Auth extends Component {
 
   onSignUp = e => {
     e.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(response => response.ok ? this.props.onAuthSignIn() : console.log(response));
     
-      firebase.firestore().collection('nickname').doc('Name').set({ name: this.state.nickname })
+      db.collection('nickname').doc('Name').set({ name: this.state.nickname })
     this.props.onAuthSignIn();
   }
 
   onLogin = e => {
     e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
     this.props.onAuthSignIn();
   }
 
@@ -36,9 +36,9 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       if(user) {
-        firebase.firestore().collection('dialogs').get().then(snapshot => this.setupData(snapshot.docs));
+        auth.collection('dialogs').get().then(snapshot => this.setupData(snapshot.docs));
       } else {
         this.setupData([]);
       }

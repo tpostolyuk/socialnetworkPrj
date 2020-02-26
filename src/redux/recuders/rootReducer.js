@@ -1,21 +1,17 @@
 import { combineReducers } from 'redux';
 import dialogMessageReducer from './dialogMessageReducer';
 import dialogNameReducer from './dialogNameReducer';
-// import asyncReducer from './asyncReducer';
 import { firebaseReducer } from 'react-redux-firebase';
-import * as firebase from 'firebase';
-import cakeReducer from './cakeReducer';
-import iceCreamReducer from './iceCreamReducer';
+import cardReducer from './cardReducer';
+import postReducer from './postReducer';
 
 const rootReducer = combineReducers({
-  message: dialogMessageReducer,
+  messages: dialogMessageReducer,
   name: dialogNameReducer,
   firebase: firebaseReducer,
-  cake: cakeReducer,
-  iceCream: iceCreamReducer  
-  // asyncfunc: asyncReducer
+  card: cardReducer,
+  post: postReducer,
+  names: dialogNameReducer
 })
-
-firebase.firestore();
 
 export default rootReducer;
