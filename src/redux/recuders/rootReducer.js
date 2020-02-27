@@ -2,16 +2,16 @@ import { combineReducers } from 'redux';
 import dialogMessageReducer from './dialogMessageReducer';
 import dialogNameReducer from './dialogNameReducer';
 import { firebaseReducer } from 'react-redux-firebase';
-import cardReducer from './cardReducer';
 import postReducer from './postReducer';
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
   messages: dialogMessageReducer,
   name: dialogNameReducer,
   firebase: firebaseReducer,
-  card: cardReducer,
   post: postReducer,
-  names: dialogNameReducer
+  names: dialogNameReducer,
+  auth: authReducer
 })
 
 export default rootReducer;

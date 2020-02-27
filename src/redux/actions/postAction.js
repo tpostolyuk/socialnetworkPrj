@@ -1,40 +1,42 @@
+import { ADD_POST, EDIT_POST, FINISH_EDITING_POST, REMOVE_POST, GET_POSTS, ROLLBACK_POSTS } from './types';
+
 export const addPost = payload => {
   return {
-    type: "ADD_POST",
+    type: ADD_POST,
     payload
   }
 }
 
 export const editPost = payload => {
   return {
-    type: "EDIT_POST",
+    type: EDIT_POST,
     payload
   }
 }
 
 export const finishEditingPost = payload => {
   return {
-    type: "FINISH_EDITING_POST",
+    type: FINISH_EDITING_POST,
     payload
   }
 }
 
 export const removePost = payload => {
   return {
-    type: "REMOVE_POST",
+    type: REMOVE_POST,
     payload
   }
 }
 
 export const getPosts = payload => {
   return {
-    type: "GET_POSTS",
+    type: GET_POSTS,
     payload
   }
 }
 
 export const rollBackPosts = () => {
   return {
-    type: "ROLLBACK_POSTS"
+    type: ROLLBACK_POSTS
   }
 }

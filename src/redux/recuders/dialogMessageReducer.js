@@ -1,4 +1,4 @@
-import { GET_MESSAGES } from '../constants/types';
+import { GET_MESSAGES } from '../actions/types';
 
 const initState = {
   messages: []

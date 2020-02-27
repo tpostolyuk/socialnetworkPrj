@@ -1,92 +1,56 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { auth, db } from '../../config'; 
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import classes from './Auth.module.scss';
+import { fetchSignUpData } from '../../redux/actions/authAction';
 
-export default class Auth extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       email: '',
-       password: '',
-       nickname: '',
-       msgs: []
-    }
-  }
+export const Auth = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
-  onSignUp = e => {
+  const signUp = e => {
     e.preventDefault();
-    auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(response => response.ok ? this.props.onAuthSignIn() : console.log(response));
-    
-      db.collection('nickname').doc('Name').set({ name: this.state.nickname })
-    this.props.onAuthSignIn();
+    dispatch(fetchSignUpData({email, password}))
   }
 
-  onLogin = e => {
-    e.preventDefault();
-    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-    this.props.onAuthSignIn();
-  }
-
-  setupData = data => {
-    data.forEach(doc => console.log(doc.data()));
-  }
-
-  componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      if(user) {
-        auth.collection('dialogs').get().then(snapshot => this.setupData(snapshot.docs));
-      } else {
-        this.setupData([]);
-      }
-    })
-  }
-
-  render() {
-    return (
-      <div className={classes.settingsWrapper}>
-        <form onSubmit={this.onLogin} 
-              className={classes.signUpForm}>
-          <TextField
-            className={classes.formItem}
-            label="Nickname"
-            onChange={e => {
-              this.setState({ nickname: e.target.value});
-            }}>
-          </TextField>
-          <TextField 
-            required 
-            className={classes.formItem}
-            id="standard-required1" 
-            label="Email"
-            onChange={e => this.setState({ email: e.target.value })}
-          />
-          <TextField
-            required
-            className={classes.formItem}
-            id="standard-required2"
-            label="Password"
-            onChange={e => this.setState({ password: e.target.value })}
-          />
-          <Button
-            className={classes.formItem} 
-            variant="contained"
-            color="default" 
-            type="submit">
-            Sign In
-          </Button>
-          <Button
-            className={classes.formIte}
-            variant="contained"
-            color="primary"
-            onClick={this.onSignUp}>
-            Sign Up            
-          </Button>
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div className={classes.settingsWrapper}>
+      <form className={classes.signUpForm}>
+        <TextField 
+          required 
+          className={classes.formItem}
+          id="standard-required1" 
+          label="Email"
+          onChange={e => setEmail(e.target.value )}
+        />
+        <TextField
+          required
+          className={classes.formItem}
+          id="standard-required2"
+          label="Password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <Button
+          className={classes.formItem} 
+          variant="contained"
+          color="default" 
+          type="submit"
+          >Sign In
+        </Button>
+        <Button
+          className={classes.formItem}
+          variant="contained"
+          color="primary"
+          type="submit"
+          onClick={e => signUp(e)}>
+          Sign Up            
+        </Button>
+      </form>
+    </div>
+  )
 }
+
+export default Auth; 

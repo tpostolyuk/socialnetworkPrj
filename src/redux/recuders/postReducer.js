@@ -1,5 +1,5 @@
 import nanoid from 'nanoid';
-import { GET_POSTS, ADD_POST, REMOVE_POST, EDIT_POST, ROLLBACK_POSTS, FINISH_EDITING_POST } from '../constants/types';
+import { GET_POSTS, ADD_POST, REMOVE_POST, EDIT_POST, ROLLBACK_POSTS, FINISH_EDITING_POST } from '../actions/types';
 
 const initState = {
   postList: [],

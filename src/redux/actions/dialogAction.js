@@ -1,4 +1,5 @@
-import { GET_NAMES, GET_MESSAGES } from '../constants/types';
+import { GET_NAMES, GET_MESSAGES } from './types';
+
 export const getNames = payload => {
   return {
     type: GET_NAMES,

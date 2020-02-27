@@ -1,4 +1,4 @@
-import { GET_NAMES } from '../constants/types';
+import { GET_NAMES } from '../actions/types';
 
 const initState = {
   names: []
