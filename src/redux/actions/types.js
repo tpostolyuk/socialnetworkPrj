@@ -12,3 +12,16 @@ export const SIGN_UP = "SIGN_UP";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 export const IS_USER_SIGN_IN = "IS_USER_SIGN_IN";
+
+// Auth routes
+export const LANDING = '/';
+export const SIGNING_UP = '/auth';
+export const SIGNING_IN = '/auth';
+export const HOME = '/profile';
+export const ACCOUNT = '/account';
+export const ADMIN = '/admin';
+export const PASSWORD_FORGET = '/pw-forget';
+
+// USER 
+
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";

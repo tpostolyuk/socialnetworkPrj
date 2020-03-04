@@ -17,7 +17,7 @@ export const Auth = () => {
   }
 
   return (
-    <div className={classes.settingsWrapper}>
+    <div className={classes.auth}>
       <form className={classes.signUpForm}>
         <TextField 
           required 

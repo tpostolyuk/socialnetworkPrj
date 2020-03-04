@@ -1,0 +1,14 @@
+.nav_list {
+  display: flex;
+  & > li {
+    font-size: 1.5rem;
+    list-style: none;
+    padding: 10px;
+    margin-right: 20px;
+    transition: .3s all ease;
+    & > a:hover {
+      color: #3f51b5;
+      transition: .3s all ease;
+    }
+  }
+} 

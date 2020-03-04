@@ -1,4 +1,5 @@
-import * as firebase from 'firebase';
+import app from 'firebase/app';
+// import * as firebase from 'firebase';
 
 export const fbConfig = {
   apiKey: "AIzaSyDM8SiNPZeG6rkuljPk0P_N7vYSkyJMBz4",
@@ -10,12 +11,16 @@ export const fbConfig = {
   appId: "1:604587974747:web:87d823b8511282dbfcdf7e"
 }
 
-// Initialize Firebase
-firebase.initializeApp(fbConfig)
-firebase.firestore();
+class Firebase {
+  constructor() {
+    app.initializeApp(fbConfig);
+  }
+}
 
-export const auth = firebase.auth();
-export const db = firebase.firestore();
-export const dbRef = db.collection('posts');
+// firebase.firestore();
 
-export default firebase
+// export const auth = firebase.auth();
+// export const db = firebase.firestore();
+// export const dbRef = db.collection('posts');
+
+export default Firebase;

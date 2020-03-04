@@ -20,7 +20,7 @@ class PostsBoard extends React.Component {
   sendPost = e => {
     const { currentVal } = this.state;
     if(currentVal !== '') {
-     dbRef.add({
+      dbRef.add({
         msg: currentVal,
         id: nanoid(5),
       })
