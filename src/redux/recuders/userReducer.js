@@ -1,10 +1,11 @@
-import { SET_CURRENT_PAGE } from '../actions/types';
+import { SET_CURRENT_PAGE, TOGGLE_ISFETCHING } from '../actions/types';
 
 const initState = {
   users: [],
   pageSize: 5,
   totalCount: 20,
-  currentPage: 2
+  currentPage: 2,
+  isFetching: true
 }
 
 const userReducer = (state = initState, action) => {
@@ -13,6 +14,11 @@ const userReducer = (state = initState, action) => {
       return {
         ...state, 
         currentPage: action.payload
+      }
+    case TOGGLE_ISFETCHING:
+      return {
+        ...state,
+        isFetching: !state.isFetching
       }
     default: return state;
   }

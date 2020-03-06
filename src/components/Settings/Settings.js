@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React  from 'react';
 import classes from './Settings.module.scss';
 
-export default class Settings extends Component {
-  
-  render() {
-    return (
-      <div className={classes.settingsWrapper}>
-
-      </div>
-    )
-  }
+export const Settings = () => {
+  return (
+    <div className={classes.settingsWrapper}></div>
+  )
 }
+
+export default Settings;

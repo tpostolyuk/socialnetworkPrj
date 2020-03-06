@@ -25,3 +25,4 @@ export const PASSWORD_FORGET = '/pw-forget';
 // USER 
 
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const TOGGLE_ISFETCHING = "TOGGLE_ISFETCHING";

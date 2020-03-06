@@ -1,4 +1,4 @@
-export { default as Settings } from './Settings';
+export { default as Settings } from './Settings/Settings';
 export { default as News } from './News';
 export { default as Music } from './Music';
 export { default as Header } from './Header';

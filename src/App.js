@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './index.css';
 import { Settings, News, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
-import {BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import { fetchIsUserLogIn } from './redux/actions/authAction';
 
 export const App = () => {
@@ -15,7 +15,9 @@ export const App = () => {
     return (
       <BrowserRouter>
         <div className="app-wrapper">
+          <Switch>
           {isAuth ? <Route path="/auth" component={Auth} /> : (
+          
             <React.Fragment>
               <Header />
               <div className="contentWrapper">
@@ -28,6 +30,7 @@ export const App = () => {
               </div>
             </React.Fragment>
           )}
+          </Switch>
         </div>
       </BrowserRouter>
     )
