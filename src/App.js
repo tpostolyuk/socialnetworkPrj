@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './index.css';
 import { Settings, News, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
@@ -6,18 +6,15 @@ import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import { fetchIsUserLogIn } from './redux/actions/authAction';
 
 export const App = () => {
-  const [isAuth, setIsAuth] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchIsUserLogIn())
     
-  }, []);
+  }, [dispatch]);
     return (
       <BrowserRouter>
         <div className="app-wrapper">
-          <Switch>
-          {isAuth ? <Route path="/auth" component={Auth} /> : (
-          
+          <Switch> 
             <React.Fragment>
               <Header />
               <div className="contentWrapper">
