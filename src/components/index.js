@@ -1,5 +1,5 @@
 export { default as Settings } from './Settings/Settings';
-export { default as News } from './News';
+export { default as Users } from './Users';
 export { default as Music } from './Music';
 export { default as Header } from './Header';
 export { default as Profile } from './Profile';

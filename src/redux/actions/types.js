@@ -18,11 +18,10 @@ export const LANDING = '/';
 export const SIGNING_UP = '/auth';
 export const SIGNING_IN = '/auth';
 export const HOME = '/profile';
-export const ACCOUNT = '/account';
-export const ADMIN = '/admin';
 export const PASSWORD_FORGET = '/pw-forget';
 
 // USER 
 
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const SET_USER_PROFILE = "SET_USER_PROFILE";
 export const TOGGLE_ISFETCHING = "TOGGLE_ISFETCHING";

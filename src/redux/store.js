@@ -5,5 +5,6 @@ import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
+window.store = store;
 
 export default store;

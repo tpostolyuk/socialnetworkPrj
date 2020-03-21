@@ -15,21 +15,6 @@ export const signOut = payload => {
   }
 }
 
-export const isUserLogIn = payload => {
-  return {
-    type: IS_USER_SIGN_IN,
-    payload
-  }
-}
-
-export const fetchIsUserLogIn = () => {
-  return dispatch => {
-    return auth.onAuthStateChanged(user => {
-      user ? dispatch(isUserLogIn('LOGGED IN!')) : dispatch(isUserLogIn('NO LOGGED!'));
-      }
-    )
-  }
-}
 
 export const fetchSignUpData = payload => {
   return dispatch => {
