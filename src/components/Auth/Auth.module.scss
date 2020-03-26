@@ -6,4 +6,7 @@
   & > .formItem:not(:last-child){
     margin-bottom: 15px;
   }
+  & > label {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
 }

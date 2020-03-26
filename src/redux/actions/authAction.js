@@ -1,35 +1,38 @@
-import { SIGN_UP, SIGN_OUT, IS_USER_SIGN_IN } from './types';
-import { auth } from '../../config';
+import { SET_USER_DATA } from './types';
+import { authAPI } from '../../api/api';
 
-export const signUp = payload => {
+export const setAuthUserData = (userId, email, login) => {
   return {
-    type: SIGN_UP,
-    payload
+    type: SET_USER_DATA,
+    data: {userId, email, login}
   }
 }
 
-export const signOut = payload => {
-  return {
-    type: SIGN_OUT,
-    payload
-  }
+export const getAuthUserData = () => dispatch => {
+  authAPI.getUserData()
+  .then(response => {
+    if(response.data.resultCode === 0) {
+      let {id, email, login} = response.data.data;
+      dispatch(setAuthUserData(id, email,login));
+    }
+  });
 }
 
-
-export const fetchSignUpData = payload => {
-  return dispatch => {
-    return auth.createUserWithEmailAndPassword(payload.email, payload.password)
-    .then(() => dispatch(signUp('Successfuly signed up!')))
-    .catch(error => {
-      console.log(error);
+export const logIn = payload => dispatch => {
+  authAPI.login(payload.email, payload.password, payload.rememberMe)
+  .then(response => {
+      if(response.data.resultCode === 0) {
+        dispatch(setAuthUserData(response.data.userId, payload.email));
+      }
     })
-  }
+    .catch(e => console.log(e.message));
 }
 
-export const fetchSignOut = payload => {
-  return dispatch => {
-    return auth.signOut()
-      .then(() => dispatch(signOut('Successfuly signed out! ')))
-      .catch(error => console.log(error.code, error.message));
-  }
+export const logOut = () => dispatch => {
+  authAPI.logout()
+    .then(response => {
+      if(response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
+      }
+    })
 }

@@ -17,5 +17,3 @@ firebase.firestore();
 export const auth = firebase.auth();
 export const db = firebase.firestore();
 export const dbRef = db.collection('posts');
-
-export default firebase

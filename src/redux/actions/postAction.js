@@ -1,4 +1,5 @@
-import { ADD_POST, EDIT_POST, FINISH_EDITING_POST, REMOVE_POST, GET_POSTS, ROLLBACK_POSTS } from './types';
+import { ADD_POST, EDIT_POST, FINISH_EDITING_POST, REMOVE_POST, GET_POSTS, ROLLBACK_POSTS, SET_STATUS } from './types';
+import { profileAPI } from '../../api/api';
 
 export const addPost = payload => {
   return {
@@ -39,4 +40,26 @@ export const rollBackPosts = () => {
   return {
     type: ROLLBACK_POSTS
   }
+}
+
+export const setStatus = payload => {
+  return {
+    type: SET_STATUS,
+    payload
+  }
+}
+
+export const getStatus = payload => dispatch => {
+  profileAPI.getStatus(payload)
+    .then(response => dispatch(setStatus(response.data)));
+}
+
+export const updateStatus = payload => dispatch => {
+  profileAPI.updateStatus(payload)
+    .then(response => {
+      if(response.data.resultCode === 0) {
+        dispatch(setStatus(payload))
+      }
+    })
+    .catch(e => console.log(e.message));
 }

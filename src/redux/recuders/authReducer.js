@@ -1,15 +1,22 @@
-import { SIGN_UP, SIGN_OUT } from '../actions/types';
+import { SET_USER_DATA } from '../actions/types';
 
-const initState = [];
+const initState = {
+  userId: 6533,
+  email: null,
+  login: null,
+  isAuth: false,
+  isFollow: false
+};
 
 const authReducer = (state = initState, action) => {
   switch(action.type) {
-    case SIGN_UP:
-      return state;
-    case SIGN_OUT:
-      return {...state};
-    default: 
-      return {...state};
+    case SET_USER_DATA:
+      return {
+        ...state,
+        ...action.data,
+        isAuth: true
+      }
+    default: return {...state};
   }
 }
 

@@ -1,53 +1,60 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import classes from './Auth.module.scss';
-import { fetchSignUpData } from '../../redux/actions/authAction';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../redux/actions/authAction';
 
 export const Auth = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-
-  const signUp = e => {
-    e.preventDefault();
-    dispatch(fetchSignUpData({email, password}))
-  }
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      rememberMe: false
+    },
+    onSubmit: values => {
+      dispatch(logIn({email: values.email, password: values.password, rememberMe: values.rememberMe}))
+    },
+    
+  });
 
   return (
     <div className={classes.auth}>
-      <form className={classes.signUpForm}>
-        <TextField 
-          required 
+      <form onSubmit={formik.handleSubmit} className={classes.signUpForm}>
+        <TextField
+          required
           className={classes.formItem}
-          id="standard-required1" 
+          id="standard-required1"
           label="Email"
-          onChange={e => setEmail(e.target.value )}
+          name="email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
         />
         <TextField
           required
           className={classes.formItem}
           id="standard-required2"
           label="Password"
-          onChange={e => setPassword(e.target.value)}
+          name="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
         />
-        <Button
-          className={classes.formItem} 
-          variant="contained"
-          color="default" 
-          type="submit"
-          >Sign In
-        </Button>
         <Button
           className={classes.formItem}
           variant="contained"
-          color="primary"
-          type="submit"
-          onClick={e => signUp(e)}>
-          Sign Up            
+          color="default"
+          type="submit">
+          Sign In
         </Button>
+        <label htmlFor="checkbox">Remeber me</label>
+        <input 
+          // checked={formik.values.rememberMe} 
+          onChange={() => formik.values.rememberMe = !formik.values.rememberMe} 
+          type="checkbox" 
+          name="checkbox" 
+        />
       </form>
     </div>
   )

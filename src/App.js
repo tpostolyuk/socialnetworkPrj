@@ -1,23 +1,35 @@
 import React from 'react';
 import './index.css';
-import { Settings, Users, Music, Header, Profile, Dialogs, Navbar } from './components';
-import {BrowserRouter, Route } from 'react-router-dom';
+import { Settings, Users, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
+import {BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthUserData } from './redux/actions/authAction';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector(state => state.auth.isAuth);
+  useEffect(() => {
+    dispatch(getAuthUserData());
+  }, [dispatch])
   return (
     <BrowserRouter>
       <div className="app-wrapper">
-          <React.Fragment>
+        {!isAuth ? <Redirect to='/login' /> : <Redirect to='/profile' />}
+        {isAuth ? 
+          <>
             <Header />
             <div className="contentWrapper">
               <Navbar />
-              <Route path='/dialogs' component={Dialogs} />
-              <Route path='/profile/:userId' render={() => <Profile />} />
-              <Route path='/users' component={Users} />
-              <Route path='/music' component={Music} />
-              <Route path='/settings' component={Settings} />
+              <Route exact path='/dialogs' component={Dialogs} />
+              <Route path='/profile/:userId?' component={Profile} />
+              <Route exact path='/users' component={Users} />
+              <Route exact path='/music' component={Music} />
+              <Route exact path='/settings' component={Settings} />
             </div>
-          </React.Fragment>
+          </>
+        : <Route exact path='/login' component={Auth} />
+        }
       </div>
     </BrowserRouter>
     )

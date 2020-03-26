@@ -1,9 +1,10 @@
 import nanoid from 'nanoid';
-import { GET_POSTS, ADD_POST, REMOVE_POST, EDIT_POST, ROLLBACK_POSTS, FINISH_EDITING_POST } from '../actions/types';
+import { GET_POSTS, ADD_POST, REMOVE_POST, EDIT_POST, ROLLBACK_POSTS, FINISH_EDITING_POST, SET_STATUS } from '../actions/types';
 
 const initState = {
   postList: [],
-  prevPostList: []
+  prevPostList: [],
+  status: 'Hakuna Matata'
 };
 
 const postReducer = (state = initState, action) => {
@@ -45,7 +46,12 @@ const postReducer = (state = initState, action) => {
           postList: state.postList.map(
            item => item.id === payload.id ? {...item, msg: payload.val, isEditing: false} : item
          )
-       }  
+       }
+      case SET_STATUS:
+        return {
+          ...state,
+          status: payload
+        }
     default: return state
   }
 }

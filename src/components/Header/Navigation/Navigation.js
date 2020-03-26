@@ -1,18 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import * as ROUTES from '../../../redux/actions/types';
 import classes from './Navigation.module.scss';
+import { logOut } from '../../../redux/actions/authAction';
+import { useDispatch } from 'react-redux';
 
-const Navigation = () => (
-  <div>
-    <ul className={classes.nav_list}>
-      <li>
-        <Link to={ROUTES.HOME}>Home</Link>
-      </li>
-      <li>
-        <Link to={ROUTES.SIGNING_IN}>Sign In</Link>
-      </li>
-    </ul>
-  </div>
-);
+const Navigation = ({isAuth, login}) => {
+  const dispatch = useDispatch();
+  return (
+    <div>
+      <ul className={classes.nav_list}>
+        <li>
+          <NavLink to={ROUTES.HOME}>Home</NavLink>
+        </li>
+        <li>
+          {isAuth ? <NavLink onClick={() => dispatch(logOut())} to='/login'>LogOut</NavLink> : ''}
+        </li>
+      </ul>
+    </div>
+  )
+};
+
 export default Navigation;

@@ -4,7 +4,7 @@ import rootReducer from './recuders/rootReducer';
 import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 window.store = store;
 
 export default store;
