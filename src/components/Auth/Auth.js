@@ -49,8 +49,7 @@ export const Auth = () => {
           Sign In
         </Button>
         <label htmlFor="checkbox">Remeber me</label>
-        <input 
-          // checked={formik.values.rememberMe} 
+        <input
           onChange={() => formik.values.rememberMe = !formik.values.rememberMe} 
           type="checkbox" 
           name="checkbox" 

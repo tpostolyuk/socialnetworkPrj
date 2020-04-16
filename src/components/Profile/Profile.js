@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 import classes from './Profile.module.css';
-import Description from './ProfileDescription/ProfileDescription';
-import PostsBoard from './MyPost/PostsBoard';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { getUserProfile } from '../../redux/actions/userAction';
 import { getStatus } from '../../redux/actions/postAction';
 import { withRouter } from 'react-router-dom';
+import { ProfileDescription } from './ProfileDescription/ProfileDescription';
+import { PostsBoard } from './MyPost/PostsBoard';
 
 export const Profile = props => {
-  const [isLoad, setIsLoad] = useState(false);
   const dispatch = useDispatch();
-  const profileInfo = useSelector(state => state.user.profile);
+  const profileInfo = useSelector(state => state.user.profile, shallowEqual);
 
   useEffect(() => {
     let userId = props.match.params.userId;
     if(!userId) {userId = 6213};
     dispatch(getUserProfile(userId));
     dispatch(getStatus(userId));
-    setIsLoad(true);
-  }, [dispatch, props.match.params.userId])
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <main className={classes.content}>
-      <Description isLoad={isLoad} profileInfo={profileInfo} />
+      <ProfileDescription profileInfo={profileInfo} />
       <PostsBoard />
     </main>
   )

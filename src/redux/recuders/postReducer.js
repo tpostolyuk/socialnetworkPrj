@@ -23,7 +23,7 @@ const postReducer = (state = initState, action) => {
         prevPostList: [...state.postList, {id: nanoid(5), msg: payload, isEditing: false}]
       };
     case REMOVE_POST:
-      const newArr = state.postList.filter(item => item.id !== payload)
+      const newArr = state.postList.filter(item => item.id !== payload);
       return {
         ...state,
         postList: newArr,

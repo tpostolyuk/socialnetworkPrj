@@ -3,7 +3,7 @@ import { SET_CURRENT_PAGE, TOGGLE_ISFETCHING, SET_USER_PROFILE, FOLLOW_USER, UNF
 const initState = {
   users: [],
   pageSize: 5,
-  totalCount: 20,
+  totalCount: 100,
   currentPage: 1,
   profile: null,
   isFetching: false,

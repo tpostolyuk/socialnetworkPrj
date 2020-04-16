@@ -7,8 +7,14 @@ export const Pagination = ({itemsAmount = 100, itemsPerPage = 10, onChange, amou
   const pagesAmount = itemsAmount / itemsPerPage;
   const setPage = page => setCurrentPage(page);
 
-  const increasePage = () => currentPage < pagesAmount && setCurrentPage(currentPage + 1);
-  const decreasePage = () => currentPage > 1 && setCurrentPage(currentPage - 1);
+  const increasePage = () => {
+    currentPage < pagesAmount && setCurrentPage(currentPage + 1)
+    onChange(currentPage);
+  };
+  const decreasePage = () => {
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+    onChange(currentPage);
+  };
 
   const renderPages = amount => {
     const from = currentPage - amountPagesToShow < 1 ? 1 : currentPage - amountPagesToShow;

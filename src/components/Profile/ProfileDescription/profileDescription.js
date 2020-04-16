@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './ProfileDescription.module.css';
 import { ProfileStatus } from './ProfileStatus';
 
-const ProfileDescription = ({profileInfo}) => {
+export const ProfileDescription = ({profileInfo}) => {
   if(!profileInfo) {
     return <h1>Loading...</h1>
   } else {
@@ -22,5 +22,3 @@ const ProfileDescription = ({profileInfo}) => {
   );
   }
 }
-
-export default ProfileDescription;

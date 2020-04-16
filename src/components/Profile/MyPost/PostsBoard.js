@@ -8,7 +8,7 @@ import { addPost, getPosts, editPost, finishEditingPost, removePost, rollBackPos
 import { dbRef } from '../../../config';
 import { useSelector, useDispatch } from 'react-redux';
 
-const PostsBoard = () => {
+export const PostsBoard = () => {
   const [currentValue, setCurrentValue] = useState('');
   const posts = useSelector(state => state.post.postList);
   const dispatch = useDispatch();
@@ -72,5 +72,3 @@ const PostsBoard = () => {
     </>
   )
 }
-
-export default PostsBoard;

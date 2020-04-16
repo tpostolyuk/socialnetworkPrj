@@ -3,15 +3,18 @@ import './index.css';
 import { Settings, Users, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
 import {BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getAuthUserData } from './redux/actions/authAction';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector(state => state.auth.isAuth, shallowEqual);
+
   useEffect(() => {
     dispatch(getAuthUserData());
-  }, [dispatch])
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">

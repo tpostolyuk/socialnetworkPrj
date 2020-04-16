@@ -6,6 +6,7 @@
   width: 80%;
   height: 700px;
   margin-left: 20px;
+  margin-top: 50px;
   & > .blockWrapper:not(:last-child){
     margin-bottom: 15px;
   }
@@ -14,18 +15,9 @@
     flex-direction: column;
   }
 }
+
 .pages {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  & > span {
-    font-size: 30px;
-    cursor: pointer;
-    padding: 10px;
-  }
-}
-
-.page__active {
-  text-decoration: underline;
-  color: brown;
 }

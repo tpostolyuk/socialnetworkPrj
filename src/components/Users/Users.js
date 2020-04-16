@@ -1,63 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Users.module.scss';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { setCurrentPage, toggleIsFetching, toggleFollowingProgress, followUser, unfollowUser, setUsers } from '../../redux/actions/userAction';
 import { usersAPI } from '../../api/api';
 import { Preloader } from '../Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
+import { Pagination } from '../Pagination/Pagination';
  
-const Users = () => {
+const Users = ({ totalCount, pageSize, currentPage, isFetching, followingInProgress, users }) => {
   const dispatch = useDispatch();
-  const pageSize = useSelector(state => state.user.pageSize);
-  const totalCount = useSelector(state => state.user.totalCount);
-  const currentPage = useSelector(state => state.user.currentPage);
-  const isFetching = useSelector(state => state.user.isFetching);
-  const users = useSelector(state => state.user.users);
-  const followingInProgress = useSelector(state => state.user.followingInProgress);
 
-  let pagesCount = Math.ceil(totalCount / pageSize);
-  let pages = [];
-
-  for(let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
+  const onChange = page => {
+    dispatch(setCurrentPage(page));
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(page, pageSize)
+      .then(response => {
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(response.items));
+      })
   }
 
   useEffect (() => {
-    console.log('useeffect')
     usersAPI.getUsers(currentPage, pageSize)
       .then(response => {
         dispatch(toggleIsFetching(false));
         dispatch(setUsers(response.items));
       })
-      .catch(err => console.log(err));
-  }, [currentPage, pageSize, totalCount]); 
-
-  const onPageChange = pageNumber => {
-    dispatch(setCurrentPage(pageNumber));
-    dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(pageNumber, pageSize)
-      .then(response => {
-        dispatch(toggleIsFetching(false));
-        dispatch(setUsers(response.items));
-      })
-  }
+      .catch(err => console.log(err)); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]); 
 
   return (
     <div className={classes.users}>
-      <div className={classes.pages}>
-        {
-          pages.map(page => {
-            return (
-              <span
-                key={page} 
-                className={currentPage === page ? classes.page__active : ''}
-                onClick={() => onPageChange(page)}>
-                {page}
-              </span>
-            )
-          })
-        }
+      <div className={classes.pagination}>
+        <Pagination itemsAmount={totalCount} itemsPerPage={pageSize} onChange={onChange}/>
       </div>
       <div className={classes.users}>
       {isFetching ? <Preloader /> : (users.map(item => {
@@ -65,7 +41,12 @@ const Users = () => {
           <div key={item.id}>
             <NavLink to={'/profile/' + item.id}>
               <div>
-                <img width="50" heigth="50" src={item.photos.large || 'https://cdn2.iconfinder.com/data/icons/flatfaces-everyday-people-square/128/beard_male_man_face_avatar-512.png' } alt="userLogo"/>
+                <img 
+                  width="50" 
+                  heigth="50" 
+                  src={item.photos.large || 'https://cdn2.iconfinder.com/data/icons/flatfaces-everyday-people-square/128/beard_male_man_face_avatar-512.png' } 
+                  alt="userLogo"
+                />
                 <br />
                 <span>{item.name}</span>
               </div>
@@ -114,4 +95,15 @@ const Users = () => {
     );
 }
 
-export default Users;
+const mapStateToProps = state => {
+  return {
+    pageSize: state.user.pageSize,
+    totalCount: state.user.totalCount,
+    currentPage: state.user.currentPage,
+    isFetching: state.user.isFetching,
+    users: state.user.users,
+    followingInProgress: state.user.followingInProgress
+  }
+}
+
+export default connect(mapStateToProps, {setCurrentPage, toggleIsFetching, toggleFollowingProgress, followUser, unfollowUser, setUsers})(Users);
