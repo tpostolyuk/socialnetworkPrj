@@ -5,7 +5,7 @@ import classes from './Navigation.module.scss';
 import { logOut } from '../../../redux/actions/authAction';
 import { useDispatch } from 'react-redux';
 
-const Navigation = ({isAuth, login}) => {
+const Navigation = ({ isAuth }) => {
   const dispatch = useDispatch();
   return (
     <div>
