@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import './index.css';
-import { Settings, Users, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
-import {BrowserRouter, Route, Redirect } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { Settings, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector, Provider } from 'react-redux';
 import { getAuthUserData } from './redux/actions/authAction';
+import { store } from './redux/store';
+
+const Users = lazy(() => import('./components/Users/Users.js'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(state => state.auth.isAuth, shallowEqual);
+  const isAuth = useSelector(state => state.auth.isAuth);
 
   useEffect(() => {
     dispatch(getAuthUserData());
@@ -23,12 +25,12 @@ export const App = () => {
           <>
             <Header />
             <div className="contentWrapper">
-              <Navbar />
-              <Route exact path='/dialogs' component={Dialogs} />
-              <Route path='/profile/:userId?' component={Profile} />
-              <Route exact path='/users' component={Users} />
-              <Route exact path='/music' component={Music} />
-              <Route exact path='/settings' component={Settings} />
+              <Navbar />        
+              <Route exact path='/dialogs' render={() => <Dialogs />} />
+              <Route path='/profile/:userId?' render={() => <Profile />} />
+              <Route exact path='/users' render={() => <Suspense fallback={<div>Loading...</div>}><Users /></Suspense>} />
+              <Route exact path='/music' render={() => <Music />} />
+              <Route exact path='/settings' component={() => <Settings />} />
             </div>
           </>
         : <Route exact path='/login' component={Auth} />
@@ -37,3 +39,13 @@ export const App = () => {
     </BrowserRouter>
     )
   }
+
+export const AppContainer = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  )
+}

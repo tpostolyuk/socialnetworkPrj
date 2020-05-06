@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import classes from './Profile.module.css';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getUserProfile } from '../../redux/actions/userAction';
 import { getStatus } from '../../redux/actions/postAction';
 import { withRouter } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { PostsBoard } from './MyPost/PostsBoard';
 
 export const Profile = props => {
   const dispatch = useDispatch();
-  const profileInfo = useSelector(state => state.user.profile, shallowEqual);
+  const profileInfo = useSelector(state => state.user.profile);
 
   useEffect(() => {
     let userId = props.match.params.userId;
