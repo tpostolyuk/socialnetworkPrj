@@ -2,7 +2,7 @@ import React from 'react';
 import classes from '../Dialog.module.css';
 import diamondIcon from './diamond.png';
 
-const DialogMessages = props => {
+export const DialogMessages = props => {
   return (
     <div className={classes.message}>
       <div className={classes.msgLogo}>
@@ -14,5 +14,3 @@ const DialogMessages = props => {
     </div>
   )
 }
-
-export default DialogMessages;

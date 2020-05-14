@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Posts.module.css';
-import Posts from './Posts';
 import nanoid from 'nanoid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Posts } from './Posts';
 import { addPost, getPosts, editPost, finishEditingPost, removePost, rollBackPosts } from '../../../redux/actions/postAction';
 import { dbRef } from '../../../config';
 import { useSelector, useDispatch } from 'react-redux';

@@ -3,7 +3,7 @@ import React, { useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import { useDispatch } from 'react-redux';
 
-const Post = ({isEditing, message, id, removePost, editPost, renderIfIsEditable, finishEditingPost}) => {
+export const Post = ({isEditing, message, id, removePost, editPost, renderIfIsEditable, finishEditingPost}) => {
   const [newPostValue, setNewPostValue] = useState('');
   const dispatch = useDispatch();
 
@@ -58,5 +58,3 @@ const Post = ({isEditing, message, id, removePost, editPost, renderIfIsEditable,
     </div>
   )
 }
-
-export default Post;

@@ -7,13 +7,13 @@ import { withRouter } from 'react-router-dom';
 import { ProfileDescription } from './ProfileDescription/ProfileDescription';
 import { PostsBoard } from './MyPost/PostsBoard';
 
-export const Profile = props => {
+const Profile = props => {
   const dispatch = useDispatch();
   const profileInfo = useSelector(state => state.user.profile);
 
   useEffect(() => {
     let userId = props.match.params.userId;
-    if(!userId) {userId = 6213};
+    if(!userId) userId = 6213;
     dispatch(getUserProfile(userId));
     dispatch(getStatus(userId));
     //eslint-disable-next-line react-hooks/exhaustive-deps
@@ -27,6 +27,4 @@ export const Profile = props => {
   )
 }
 
-const WithUrlDataContainerComponent = withRouter(Profile);
-
-export default WithUrlDataContainerComponent;
+export const ProfileContainer = withRouter(Profile);

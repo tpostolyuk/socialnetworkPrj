@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Posts.module.css';
-import Post from './Post';
+import { Post } from './Post';
 
-const Posts = props => {
+export const Posts = props => {
   const postElement = props.posts.map(item => {
     return (
       <Post
@@ -29,5 +29,3 @@ const Posts = props => {
      );
 
  }
-
-export default Posts;

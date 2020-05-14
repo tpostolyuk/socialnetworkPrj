@@ -1,14 +1,14 @@
 import React from 'react';
 import classes from './Dialog.module.css';
-import DialogNames from './DialogNames/DialogNames';
-import DialogMessages from './DialogMessages/DialogMessages';
+import { DialogNames } from './DialogNames/DialogNames';
+import { DialogMessages } from './DialogMessages/DialogMessages';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { db } from '../../config';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { getNames, getMessages } from '../../redux/actions/index';
 
-const Dialogs = () => {
+export const Dialogs = () => {
   const { names } = useSelector(state => state.names, []);
   const { messages } = useSelector(state => state.messages, []);
   const dispatch = useDispatch();
@@ -47,5 +47,3 @@ const Dialogs = () => {
     </div>
   );
 }
-
-export default Dialogs;

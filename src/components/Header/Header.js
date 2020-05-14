@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Header.module.css';
 import logo from './logo.png';
-import Navigation from './Navigation/Navigation';
+import { Navigation } from './Navigation/Navigation';
 import { useSelector } from 'react-redux';
 
 export const Header = () => { 
@@ -22,5 +22,3 @@ export const Header = () => {
     </header>
   )
 }
-
-export default Header;

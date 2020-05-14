@@ -1,7 +1,7 @@
 import { SET_CURRENT_PAGE, TOGGLE_ISFETCHING, SET_USER_PROFILE, FOLLOW_USER, UNFOLLOW_USER, SET_USERS, FOLLOWING_IN_PROGRESS } from '../actions/types';
 
 const initState = {
-  users: [],
+  users: [{name: "LostHeaven", id: 8065, uniqueUrlName: null, status: null }],
   pageSize: 5,
   totalCount: 100,
   currentPage: 1,
@@ -10,7 +10,7 @@ const initState = {
   followingInProgress: []
 }
 
-const userReducer = (state = initState, action) => {
+export const userReducer = (state = initState, action) => {
   switch(action.type) {
     case SET_CURRENT_PAGE:
       return {
@@ -60,4 +60,3 @@ const userReducer = (state = initState, action) => {
     default: return state;
   }
 }
-export default userReducer;

@@ -4,7 +4,7 @@ const initState = {
   messages: []
 };
 
-const messageReducer = (state = initState, action) => {
+export const dialogMessageReducer = (state = initState, action) => {
   switch(action.type) {
     case GET_MESSAGES: 
       return {
@@ -15,5 +15,3 @@ const messageReducer = (state = initState, action) => {
   }
   
 }
-
-export default messageReducer;

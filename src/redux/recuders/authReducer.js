@@ -8,7 +8,7 @@ const initState = {
   isFollow: false
 };
 
-const authReducer = (state = initState, action) => {
+export const authReducer = (state = initState, action) => {
   switch(action.type) {
     case SET_USER_DATA:
       return {
@@ -19,5 +19,3 @@ const authReducer = (state = initState, action) => {
     default: return {...state};
   }
 }
-
-export default authReducer;

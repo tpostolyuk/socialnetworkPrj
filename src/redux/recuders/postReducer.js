@@ -7,7 +7,7 @@ const initState = {
   status: 'Hakuna Matata'
 };
 
-const postReducer = (state = initState, action) => {
+export const postReducer = (state = initState, action) => {
   const {payload} = action;
   switch(action.type) {
     case GET_POSTS:
@@ -55,5 +55,3 @@ const postReducer = (state = initState, action) => {
     default: return state
   }
 }
-
-export default postReducer;

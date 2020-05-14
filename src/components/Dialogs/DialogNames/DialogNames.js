@@ -1,7 +1,7 @@
 import classes from '../Dialog.module.css';
 import React from 'react';
 
-const DialogNames = props => {
+export const DialogNames = props => {
     return (
       <div className={classes.item}>
         <div className={classes.userLogo}>
@@ -14,5 +14,3 @@ const DialogNames = props => {
     </div>       
     )
   }
-
-export default DialogNames;

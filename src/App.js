@@ -1,12 +1,9 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import './index.css';
-import { Settings, Music, Header, Profile, Dialogs, Navbar, Auth } from './components';
+import { Music, Header, Settings, Users, ProfileContainer, Dialogs, Navbar, Auth } from './components';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector, Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuthUserData } from './redux/actions/authAction';
-import { store } from './redux/store';
-
-const Users = lazy(() => import('./components/Users/Users.js'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,8 +24,8 @@ export const App = () => {
             <div className="contentWrapper">
               <Navbar />        
               <Route exact path='/dialogs' render={() => <Dialogs />} />
-              <Route path='/profile/:userId?' render={() => <Profile />} />
-              <Route exact path='/users' render={() => <Suspense fallback={<div>Loading...</div>}><Users /></Suspense>} />
+              <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+              <Route exact path='/users' render={() => <Users />} />
               <Route exact path='/music' render={() => <Music />} />
               <Route exact path='/settings' component={() => <Settings />} />
             </div>
@@ -39,13 +36,3 @@ export const App = () => {
     </BrowserRouter>
     )
   }
-
-export const AppContainer = () => {
-  return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  )
-}

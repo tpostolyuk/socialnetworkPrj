@@ -4,7 +4,7 @@ const initState = {
   names: []
 }
 
-const dialogNameReducer = (state = initState, action) => {
+export const dialogNameReducer = (state = initState, action) => {
   const { payload } = action;
   switch(action.type) {
   case GET_NAMES:
@@ -15,5 +15,3 @@ const dialogNameReducer = (state = initState, action) => {
   default: return state;
   }
 }
-
-export default dialogNameReducer;

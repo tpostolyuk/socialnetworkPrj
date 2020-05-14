@@ -6,5 +6,3 @@ export const Settings = () => {
     <div className={classes.settingsWrapper}></div>
   )
 }
-
-export default Settings;
