@@ -9,15 +9,8 @@ import { Pagination } from '../Pagination/Pagination';
 
 export const Users = ({ totalCount, pageSize, currentPage, isFetching, followingInProgress, users }) => {
   const dispatch = useDispatch();
-  const onChange = page => {
-    dispatch(setCurrentPage(page));
-    dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(page, pageSize)
-      .then(response => {
-        dispatch(toggleIsFetching(false));
-        dispatch(setUsers(response.items));
-      })
-  }
+  console.log('USERS-COMPONENT', users)
+  const onChange = page => dispatch(setCurrentPage(page));
 
   useEffect(() => {
     usersAPI.getUsers(currentPage, pageSize)
@@ -36,7 +29,7 @@ export const Users = ({ totalCount, pageSize, currentPage, isFetching, following
         <Pagination itemsAmount={totalCount} itemsPerPage={pageSize} onChange={onChange}/>
       </div>
       <div className={classes.users}>
-      {isFetching ? <Preloader /> : (users.map(item => {
+      {isFetching ? <Preloader /> : "Loading..." || (users.map(item => {
         return (
           <div key={item.id}>
             <NavLink to={'/profile/' + item.id}>
