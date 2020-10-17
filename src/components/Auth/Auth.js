@@ -14,10 +14,10 @@ export const Auth = () => {
       password: '',
       rememberMe: false
     },
+
     onSubmit: values => {
       dispatch(logIn({email: values.email, password: values.password, rememberMe: values.rememberMe}))
     },
-    
   });
 
   return (

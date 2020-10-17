@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './index.css';
-import { Music, Header, Settings, Users, ProfileContainer, Dialogs, Navbar, Auth } from './components';
+import { Header, Users, ProfileContainer, Dialogs, Navbar, Auth } from './components';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthUserData } from './redux/actions/authAction';
@@ -26,8 +26,6 @@ export const App = () => {
               <Route exact path='/dialogs' render={() => <Dialogs />} />
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
               <Route exact path='/users' render={() => <Users />} />
-              <Route exact path='/music' render={() => <Music />} />
-              <Route exact path='/settings' component={() => <Settings />} />
             </div>
           </>
         : <Route exact path='/login' component={Auth} />

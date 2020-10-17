@@ -1,7 +1,7 @@
 import { SET_CURRENT_PAGE, TOGGLE_ISFETCHING, SET_USER_PROFILE, FOLLOW_USER, UNFOLLOW_USER, SET_USERS, FOLLOWING_IN_PROGRESS } from '../actions/types';
 
 const initState = {
-  users: [{name: "LostHeaven", id: 8065, uniqueUrlName: null, status: null }],
+  users: [],
   pageSize: 5,
   totalCount: 100,
   currentPage: 1,

@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import classes from './Users.module.scss';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPage, toggleIsFetching, toggleFollowingProgress, followUser, unfollowUser, setUsers } from '../../redux/actions/userAction';
 import { usersAPI } from '../../api/api';
 import { Preloader } from '../Preloader/Preloader';
 import { NavLink } from 'react-router-dom';
 import { Pagination } from '../Pagination/Pagination';
 
-export const Users = ({ totalCount, pageSize, currentPage, isFetching, followingInProgress, users }) => {
+export const Users = props => {
   const dispatch = useDispatch();
-  console.log('USERS-COMPONENT', users)
+
+  const followingInProgress = useSelector(state => state.user.followingInProgress);
+  const totalCount = useSelector(state => state.user.totalCount);
+  const currentPage = useSelector(state => state.user.currentPage);
+  const isFetching = useSelector(state => state.user.isFetching);
+  const pageSize = useSelector(state => state.user.pageSize);
+  const users = useSelector(state => state.user.users);
+
   const onChange = page => dispatch(setCurrentPage(page));
 
   useEffect(() => {
@@ -17,7 +24,6 @@ export const Users = ({ totalCount, pageSize, currentPage, isFetching, following
       .then(response => {
         dispatch(toggleIsFetching(false));
         dispatch(setUsers(response.items));
-        console.log('USERS - ', response);
       })
       .catch(err => console.log(err)); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +35,7 @@ export const Users = ({ totalCount, pageSize, currentPage, isFetching, following
         <Pagination itemsAmount={totalCount} itemsPerPage={pageSize} onChange={onChange}/>
       </div>
       <div className={classes.users}>
-      {isFetching ? <Preloader /> : "Loading..." || (users.map(item => {
+      {isFetching ? <Preloader /> : (users.map(item => {
         return (
           <div key={item.id}>
             <NavLink to={'/profile/' + item.id}>
@@ -85,19 +91,3 @@ export const Users = ({ totalCount, pageSize, currentPage, isFetching, following
     </div>
     );
 }
-
-const mapStateToProps = state => {
-  return {
-    users: state.user.users,
-    pageSize: state.user.pageSize,
-    totalCount: state.user.totalCount,
-    currentPage: state.user.currentPage,
-    isFetching: state.user.isFetching,
-    followingInProgress: state.user.followingInProgress
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  { setCurrentPage, toggleIsFetching, toggleFollowingProgress, followUser, unfollowUser, setUsers }
-)(Users);
